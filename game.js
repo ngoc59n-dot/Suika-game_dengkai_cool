@@ -133,6 +133,7 @@ function createDice(x, y, type, isPreview = false) {
         frictionAir: 0.001,
         angularDamping: 0.05,
         angle: Math.random() * Math.PI * 2,
+        slop: 0.3,
         collisionFilter: {
             group: isPreview ? -1 : 0,
             category: isPreview ? 0x0002 : 0x0001,
