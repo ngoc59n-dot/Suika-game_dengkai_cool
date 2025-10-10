@@ -12,18 +12,18 @@ const WALL_THICKNESS = 20;
 const GAME_OVER_LINE_Y = CANVAS_HEIGHT * 0.2; // 20% from top // 80% of canvas height
 
 const DICE_TYPES = {// Dice types and their properties
-  'D2':       { radius: 25, img: 'img/idol1.png', next: 'D4' },
-  'D4':       { radius: 30, img: 'img/idol2.png', next: 'D6' },
-  'D6':       { radius: 35, img: 'img/idol3.png', next: 'D8' },
-  'D8':       { radius: 40, img: 'img/idol4.png', next: 'D10' },
-  'D10':      { radius: 45, img: 'img/idol5.png', next: 'D12' },
-  'D12':      { radius: 50, img: 'img/idol6.png', next: 'D16' },
-  'D16':      { radius: 55, img: 'img/idol7.png', next: 'D20' },
-  'D20':      { radius: 60, img: 'img/idol8.png', next: 'D100' },
-  'D100':     { radius: 70, img: 'img/idol9.png', next: 'D256' },
-  'D256':     { radius: 80, img: 'img/idol10.png', next: 'D1000' },
-  'D1000':    { radius: 90, img: 'img/idol11.png', next: 'DULTIMATE' },
-  'DULTIMATE':{ radius: 100, img: 'img/idol12.png', next: null }
+  'D2':       { radius: 25, img: 'img/idol1.png', imgSize: 250, next: 'D4' },
+  'D4':       { radius: 30, img: 'img/idol2.png', imgSize: 300, next: 'D6' },
+  'D6':       { radius: 35, img: 'img/idol3.png', imgSize: 350, next: 'D8' },
+  'D8':       { radius: 40, img: 'img/idol4.png', imgSize: 400, next: 'D10' },
+  'D10':      { radius: 45, img: 'img/idol5.png', imgSize: 450, next: 'D12' },
+  'D12':      { radius: 50, img: 'img/idol6.png', imgSize: 500, next: 'D16' },
+  'D16':      { radius: 55, img: 'img/idol7.png', imgSize: 550, next: 'D20' },
+  'D20':      { radius: 60, img: 'img/idol8.png', imgSize: 600, next: 'D100' },
+  'D100':     { radius: 70, img: 'img/idol9.png', imgSize: 650, next: 'D256' },
+  'D256':     { radius: 80, img: 'img/idol10.png', imgSize: 700, next: 'D1000' },
+  'D1000':    { radius: 90, img: 'img/idol11.png', imgSize: 750, next: 'DULTIMATE' },
+  'DULTIMATE':{ radius: 100, img: 'img/idol12.png', imgSize: 800, next: null }
 };
 
 // Game state
@@ -124,20 +124,20 @@ function createDice(x, y, type, isPreview = false) {
         render: {
             sprite: {
                 texture: diceProps.img,
-                xScale: 0.2,
-                yScale: 0.2
+                xScale: (diceProps.radius * 2) / diceProps.imgSize,
+                yScale: (diceProps.radius * 2) / diceProps.imgSize
             }
         },
-        restitution: 0.5,
-        friction: 0.1,
-        frictionAir: 0.001,
+        restitution: 0.3,
+        friction: 0.3,
+        frictionAir: 0.01,
         angularDamping: 0.05,
         angle: Math.random() * Math.PI * 2,
-        slop: 0.3,
+        slop: 0.01,
         collisionFilter: {
-            group: isPreview ? -1 : 0,
-            category: isPreview ? 0x0002 : 0x0001,
-            mask: isPreview ? 0x0000 : 0x0001
+            group: 0,
+            category: 0x0001,
+            mask: isPreview ? 0x0000 : 0xFFFFFFFF
         },
         isSensor: isPreview
     });
