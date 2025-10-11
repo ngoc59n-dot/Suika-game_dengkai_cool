@@ -128,10 +128,10 @@ function createDice(x, y, type, isPreview = false) {
                 yScale: (diceProps.radius * 2) / diceProps.imgSize
             }
         },
-        restitution: 0.3,
-        friction: 0.3,
-        frictionAir: 0.01,
-        angularDamping: 0.05,
+        restitution: 0.4,
+        friction: 0.05,
+        frictionAir: 0.0005,
+        angularDamping: 0.01,
         angle: Math.random() * Math.PI * 2,
         slop: 0.01,
         collisionFilter: {
