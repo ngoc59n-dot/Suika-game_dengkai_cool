@@ -7,7 +7,7 @@ const Body = Matter.Body;
 
 // Game constants
 const CANVAS_WIDTH = 400;
-const CANVAS_HEIGHT = 600;
+const CANVAS_HEIGHT = 700;
 const WALL_THICKNESS = 20;
 const GAME_OVER_LINE_Y = CANVAS_HEIGHT * 0.2; // 20% from top // 80% of canvas height
 
